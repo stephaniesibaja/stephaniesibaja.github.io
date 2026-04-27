@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stephanie Sibaja — Marketing Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white:       #FFFFFF;
+    --off-white:   #F9F9F9;
+    --light-gray:  #F0F0F0;
+    --mid-gray:    #E0E0E0;
+    --silver:      #B8B8B8;
+    --silver-dim:  #888888;
+    --chrome:      #C8C8C8;
+    --chrome-hi:   #E8E8E8;
+    --dark-gray:   #1A1A1A;
+    --black:       #0D0D0D;
+    --ink:         #111111;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.5rem 4rem;
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--mid-gray);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.8rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--silver-dim);
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 6rem;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6rem 4rem 6rem 5rem;
+    background: var(--white);
+  }
+  .hero-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--silver-dim);
+    margin-bottom: 2rem;
+    opacity: 0; animation: fadeUp 0.8s forwards 0.3s;
+  }
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 6vw, 6rem);
+    font-weight: 300;
+    line-height: 1.04;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    opacity: 0; animation: fadeUp 0.8s forwards 0.5s;
+  }
+  .hero-name em {
+    font-style: italic;
+    background: linear-gradient(135deg, #9A9A9A 0%, #D8D8D8 40%, #8C8C8C 70%, #C4C4C4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-desc {
+    margin-top: 2rem;
+    font-size: 0.95rem;
+    line-height: 1.85;
+    color: var(--silver-dim);
+    max-width: 400px;
+    opacity: 0; animation: fadeUp 0.8s forwards 0.7s;
+  }
+  .hero-cta {
+    margin-top: 3rem;
+    display: flex; gap: 1.5rem; align-items: center;
+    opacity: 0; animation: fadeUp 0.8s forwards 0.9s;
+  }
+  .btn-primary {
+    padding: 0.85rem 2.2rem;
+    background: var(--ink);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .btn-primary:hover { background: var(--dark-gray); transform: translateY(-2px); }
+  .btn-ghost {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--silver-dim);
+    text-decoration: none;
+    border-bottom: 1px solid var(--chrome);
+    padding-bottom: 2px;
+    transition: color 0.25s, border-color 0.25s;
+  }
+  .btn-ghost:hover { color: var(--ink); border-color: var(--silver-dim); }
+
+  .hero-right {
+    position: relative; overflow: hidden;
+    background: var(--ink);
+    opacity: 0; animation: fadeIn 1s forwards 0.4s;
+  }
+  .hero-bg-pattern {
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(45deg, transparent, transparent 50px, rgba(200,200,200,0.03) 50px, rgba(200,200,200,0.03) 51px),
+      repeating-linear-gradient(-45deg, transparent, transparent 50px, rgba(200,200,200,0.02) 50px, rgba(200,200,200,0.02) 51px);
+  }
+  .hero-shimmer {
+    position: absolute; top: 0; bottom: 0; left: 50%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(200,200,200,0.15) 30%, rgba(200,200,200,0.15) 70%, transparent);
+  }
+  .hero-right-content {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 3.5rem;
+  }
+  .hero-stats { display: flex; gap: 3rem; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; font-weight: 300;
+    background: linear-gradient(135deg, #9A9A9A 0%, #E0E0E0 40%, #8C8C8C 70%, #D0D0D0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-top: 0.4rem;
+  }
+  .hero-right-tag {
+    position: absolute; top: 3.5rem; right: 3rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.8rem; font-style: italic;
+    color: rgba(255,255,255,0.18);
+    writing-mode: vertical-rl;
+    letter-spacing: 0.2em;
+  }
+
+  /* ── SHARED ── */
+  section { padding: 7rem 5rem; }
+  .section-header {
+    display: flex; align-items: baseline; gap: 1.5rem;
+    margin-bottom: 4.5rem;
+  }
+  .section-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem; color: var(--silver);
+    letter-spacing: 0.12em;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300; letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .section-line {
+    flex: 1; height: 1px;
+    background: linear-gradient(to right, var(--mid-gray), transparent);
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--off-white); }
+  .about-grid {
+    display: grid; grid-template-columns: 1.2fr 1fr;
+    gap: 6rem; align-items: start;
+  }
+  .about-text p { font-size: 1rem; line-height: 1.88; color: #555; margin-bottom: 1.5rem; }
+  .about-text strong { font-weight: 500; color: var(--ink); }
+  .info-block { margin-bottom: 2.5rem; }
+  .info-label {
+    font-size: 0.6rem; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--silver); margin-bottom: 0.6rem;
+    padding-bottom: 0.6rem; border-bottom: 1px solid var(--mid-gray);
+  }
+  .info-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem; color: var(--dark-gray); line-height: 1.6;
+  }
+  .skills-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.6rem; }
+  .skill-tag {
+    padding: 0.28rem 0.85rem;
+    border: 1px solid var(--mid-gray);
+    font-size: 0.67rem; letter-spacing: 0.1em;
+    color: var(--silver-dim); background: var(--white);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .skill-tag:hover { border-color: var(--silver); color: var(--ink); }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--white); }
+  .exp-item {
+    display: grid; grid-template-columns: 210px 1fr;
+    gap: 2.5rem; padding: 2.8rem 0;
+    border-bottom: 1px solid var(--light-gray);
+  }
+  .exp-item:first-child { border-top: 1px solid var(--light-gray); }
+  .exp-date {
+    font-size: 0.68rem; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--silver); padding-top: 0.3rem;
+  }
+  .exp-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.45rem; font-weight: 400; color: var(--ink);
+  }
+  .exp-company {
+    font-size: 0.68rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--silver);
+    margin-top: 0.25rem; margin-bottom: 1.1rem;
+  }
+  .exp-bullets { list-style: none; }
+  .exp-bullets li {
+    font-size: 0.88rem; line-height: 1.78; color: #666;
+    padding-left: 1.2rem; position: relative; margin-bottom: 0.4rem;
+  }
+  .exp-bullets li::before {
+    content: '—'; position: absolute; left: 0;
+    color: var(--chrome); font-size: 0.75rem;
+  }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--ink); }
+  #projects .section-title { color: var(--off-white); }
+  #projects .section-num { color: var(--silver); }
+  #projects .section-line { background: linear-gradient(to right, rgba(200,200,200,0.2), transparent); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: #222;
+  }
+
+  /* cards are now anchor tags */
+  .project-card {
+    position: relative; overflow: hidden;
+    aspect-ratio: 3/4;
+    background: #0F0F0F;
+    transition: background 0.3s;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+  }
+  .project-card.large { grid-column: span 2; aspect-ratio: auto; min-height: 420px; }
+  .project-card:hover { background: #141414; }
+
+  .project-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--chrome) 50%, transparent 100%);
+    opacity: 0; transition: opacity 0.4s;
+    z-index: 2;
+  }
+  .project-card:hover::before { opacity: 1; }
+
+  .project-bg {
+    position: absolute; inset: 0;
+    transition: transform 0.6s ease;
+  }
+  .project-card:hover .project-bg { transform: scale(1.03); }
+
+  /* McLaren x Fenty — black & burnt orange */
+  .project-card:nth-child(1) .project-bg {
+    background: linear-gradient(150deg, #0A0A0A 0%, #1A0C00 40%, #2E1500 70%, #1A0800 100%);
+  }
+  .project-card:nth-child(1) .project-content {
+    background: linear-gradient(to top, rgba(30,10,0,0.95) 0%, rgba(20,8,0,0.55) 50%, rgba(201,100,20,0.08) 100%);
+  }
+  /* Red Bull — deep navy & crimson */
+  .project-card:nth-child(2) .project-bg {
+    background: linear-gradient(150deg, #060810 0%, #0D1220 40%, #1A0A14 70%, #100614 100%);
+  }
+  .project-card:nth-child(2) .project-content {
+    background: linear-gradient(to top, rgba(18,4,12,0.95) 0%, rgba(12,6,18,0.55) 50%, rgba(180,20,40,0.08) 100%);
+  }
+  /* ÉcoFruits — deep forest green & natural */
+  .project-card:nth-child(3) .project-bg {
+    background: linear-gradient(150deg, #030A04 0%, #071410 40%, #0A1A0C 70%, #051008 100%);
+  }
+  .project-card:nth-child(3) .project-content {
+    background: linear-gradient(to top, rgba(4,14,6,0.95) 0%, rgba(6,16,8,0.55) 50%, rgba(40,120,60,0.08) 100%);
+  }
+  /* L'Occitane — warm amber & earthy gold */
+  .project-card:nth-child(4) .project-bg {
+    background: linear-gradient(150deg, #0A0800 0%, #18140A 40%, #221A08 70%, #140E04 100%);
+  }
+  .project-card:nth-child(4) .project-content {
+    background: linear-gradient(to top, rgba(20,14,4,0.95) 0%, rgba(16,12,4,0.55) 50%, rgba(180,140,40,0.08) 100%);
+  }
+
+  .project-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      60deg, transparent, transparent 30px,
+      rgba(180,180,180,0.015) 30px, rgba(180,180,180,0.015) 31px
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .project-content {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 2.2rem;
+    z-index: 1;
+  }
+  .project-tag {
+    font-size: 0.58rem; letter-spacing: 0.28em;
+    text-transform: uppercase; color: var(--silver); margin-bottom: 0.6rem;
+  }
+  .project-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; color: var(--off-white);
+    line-height: 1.2; margin-bottom: 0.6rem;
+  }
+  .project-card.large .project-name { font-size: 2.3rem; }
+  .project-desc {
+    font-size: 0.78rem; line-height: 1.65;
+    color: rgba(240,240,240,0.55);
+    max-width: 360px;
+    opacity: 0; transform: translateY(8px);
+    transition: opacity 0.35s, transform 0.35s;
+  }
+  .project-card:hover .project-desc { opacity: 1; transform: none; }
+
+  /* "View PDF" label that appears on hover */
+  .project-view {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    margin-top: 1rem;
+    font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--chrome);
+    border-bottom: 1px solid rgba(200,200,200,0.3);
+    padding-bottom: 2px;
+    opacity: 0; transform: translateY(6px);
+    transition: opacity 0.35s 0.05s, transform 0.35s 0.05s;
+  }
+  .project-view::after { content: '→'; font-size: 0.75rem; }
+  .project-card:hover .project-view { opacity: 1; transform: none; }
+
+  .project-featured {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(200,200,200,0.3);
+    border: 1px solid rgba(200,200,200,0.1);
+    padding: 0.28rem 0.7rem; z-index: 1;
+  }
+
+  /* ── EDUCATION ── */
+  #education { background: var(--off-white); }
+  .edu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 3rem; }
+  .edu-card {
+    padding: 2.5rem; border: 1px solid var(--mid-gray);
+    background: var(--white); position: relative; overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .edu-card:hover { border-color: var(--chrome); }
+  .edu-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--silver) 0%, var(--chrome-hi) 50%, var(--silver) 100%);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .edu-card:hover::before { opacity: 1; }
+  .edu-year {
+    font-size: 0.6rem; letter-spacing: 0.26em;
+    text-transform: uppercase; color: var(--silver); margin-bottom: 1rem;
+  }
+  .edu-degree {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem; color: var(--ink); margin-bottom: 0.3rem;
+  }
+  .edu-school { font-size: 0.72rem; color: var(--silver-dim); letter-spacing: 0.08em; margin-bottom: 1rem; }
+  .edu-note { font-size: 0.8rem; line-height: 1.72; color: #666; }
+
+  .cert-section { margin-top: 0.5rem; }
+  .cert-badge {
+    display: inline-flex; align-items: center; gap: 0.85rem;
+    padding: 0.75rem 1.6rem;
+    border: 1px solid var(--mid-gray); background: var(--white);
+    transition: border-color 0.25s;
+  }
+  .cert-badge:hover { border-color: var(--chrome); }
+  .cert-dot {
+    width: 5px; height: 5px;
+    background: linear-gradient(135deg, var(--silver), var(--chrome-hi));
+    border-radius: 50%;
+  }
+  .cert-text { font-size: 0.76rem; letter-spacing: 0.08em; color: #666; }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--ink); text-align: center; padding: 9rem 5rem; }
+  .contact-eyebrow {
+    font-size: 0.65rem; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--silver); margin-bottom: 1.5rem;
+  }
+  .contact-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 300; line-height: 1.08;
+    color: var(--off-white); margin-bottom: 2rem;
+  }
+  .contact-headline em {
+    font-style: italic;
+    background: linear-gradient(135deg, #8C8C8C 0%, #D8D8D8 40%, #8C8C8C 70%, #C4C4C4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .contact-links {
+    display: flex; justify-content: center;
+    gap: 3.5rem; margin-top: 3.5rem; flex-wrap: wrap;
+  }
+  .contact-link { text-decoration: none; text-align: center; }
+  .contact-link-label {
+    display: block; font-size: 0.58rem; letter-spacing: 0.28em;
+    text-transform: uppercase; color: rgba(200,200,200,0.35); margin-bottom: 0.5rem;
+  }
+  .contact-link-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem; color: var(--off-white);
+    border-bottom: 1px solid rgba(200,200,200,0.2);
+    padding-bottom: 2px; transition: color 0.25s, border-color 0.25s;
+  }
+  .contact-link:hover .contact-link-value { color: var(--chrome); border-color: var(--chrome); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink); border-top: 1px solid #1E1E1E;
+    padding: 2rem 5rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem; letter-spacing: 0.18em; color: rgba(255,255,255,0.25);
+  }
+  .footer-note { font-size: 0.65rem; letter-spacing: 0.14em; color: rgba(255,255,255,0.12); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: none; }
+  }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 2rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 7rem 2rem 5rem; }
+    section { padding: 5rem 2rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.6rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.large { grid-column: span 1; }
+    .edu-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
+    #contact { padding: 6rem 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">S. Sibaja</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <p class="hero-tag">Marketing Portfolio · CSUN Class of 2026</p>
+    <h1 class="hero-name">
+      Stephanie<br><em>Sibaja</em>
+    </h1>
+    <p class="hero-desc">
+      A bilingual marketing strategist with luxury retail experience, international business training in France, and a proven ability to craft brand narratives that bridge culture and commerce.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">View Work</a>
+      <a href="#contact" class="btn-ghost">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-bg-pattern"></div>
+    <div class="hero-shimmer"></div>
+    <div class="hero-right-tag">Brand · Strategy · Culture</div>
+    <div class="hero-right-content">
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">3+</div>
+          <div class="stat-label">Years Luxury Retail</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">4</div>
+          <div class="stat-label">Brand Campaigns</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Languages</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header reveal">
+    <span class="section-num">01</span>
+    <h2 class="section-title">About Me</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>I'm a <strong>Marketing senior at California State University, Northridge</strong>, graduating May 2026. My academic journey has taken me from Los Angeles to Aix-en-Provence, France, where I studied Corporate Finance, International Business, and Consumer Market Studies at ESSCA School of Management.</p>
+      <p>I bring a rare combination of <strong>luxury brand experience</strong> — from Tiffany & Co. to Warren Lotas — and a strategic marketing mindset sharpened through data-driven projects, brand partnership concepts, and international research.</p>
+      <p>I'm passionate about the intersection of <strong>culture, identity, and brand storytelling</strong>. Whether pitching a McLaren × Fenty beauty partnership or conducting consumer research on eco-innovation in France, I approach every project with creative rigor and a global perspective.</p>
+    </div>
+    <div class="about-sidebar reveal">
+      <div class="info-block">
+        <div class="info-label">Location</div>
+        <div class="info-value">Los Angeles, California</div>
+      </div>
+      <div class="info-block">
+        <div class="info-label">Education</div>
+        <div class="info-value">B.S. Marketing<br>CSUN · May 2026</div>
+      </div>
+      <div class="info-block">
+        <div class="info-label">Languages</div>
+        <div class="info-value">English · Spanish · ASL</div>
+      </div>
+      <div class="info-block">
+        <div class="info-label">Tools & Skills</div>
+        <div class="skills-list">
+          <span class="skill-tag">Canva</span>
+          <span class="skill-tag">Tableau</span>
+          <span class="skill-tag">Shopify</span>
+          <span class="skill-tag">HubSpot</span>
+          <span class="skill-tag">Google Suite</span>
+          <span class="skill-tag">Kustomer CRM</span>
+          <span class="skill-tag">JASP</span>
+          <span class="skill-tag">Microsoft Office</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header reveal">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Experience</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="exp-item reveal">
+    <div class="exp-date">Apr 2025 — Present</div>
+    <div class="exp-right">
+      <div class="exp-role">Retail Sales Associate</div>
+      <div class="exp-company">Warren Lotas · West Hollywood, CA</div>
+      <ul class="exp-bullets">
+        <li>Created and scheduled Instagram Story content — product highlights, drop reminders, in-store moments — supporting real-time community engagement and a 5% traffic increase.</li>
+        <li>Upheld visual merchandising standards for limited releases in a high-traffic environment, supporting higher conversion during drop periods.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exp-item reveal">
+    <div class="exp-date">Oct 2024 — Jan 2025</div>
+    <div class="exp-right">
+      <div class="exp-role">Sales Support</div>
+      <div class="exp-company">Tiffany & Co. · Pasadena, CA</div>
+      <ul class="exp-bullets">
+        <li>Led seasonal hospitality execution during peak holiday traffic, upholding elevated client experience standards while reinforcing seasonal campaign messaging.</li>
+        <li>Facilitated POS coordination and luxury client satisfaction within a world-class brand environment.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exp-item reveal">
+    <div class="exp-date">Nov 2021 — Jan 2024</div>
+    <div class="exp-right">
+      <div class="exp-role">Editor</div>
+      <div class="exp-company">Glossier LA · West Hollywood, CA</div>
+      <ul class="exp-bullets">
+        <li>Executed three in-store brand activations and community events per quarter, including celebrity activations, driving brand story engagement and in-store traffic.</li>
+        <li>Managed omnichannel customer experience across in-store and e-commerce using Shopify and Kustomer CRM.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header reveal">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Selected Work</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="projects-grid">
+
+    <a class="project-card large reveal" href="McLaren-Fenty.pdf" target="_blank">
+      <div class="project-bg"></div>
+      <span class="project-featured">Featured Project</span>
+      <div class="project-content">
+        <div class="project-tag">Brand Partnership · Campaign Strategy</div>
+        <div class="project-name">McLaren × Fenty Beauty</div>
+        <div class="project-desc">A bold partnership concept uniting Formula 1 and beauty, targeting the 40% female motorsport fanbase through social media, race weekend activations, and ambassador-led campaigns.</div>
+        <span class="project-view">View PDF</span>
+      </div>
+    </a>
+
+    <a class="project-card reveal" href="Red-Bull-Momentum.pdf" target="_blank">
+      <div class="project-bg"></div>
+      <div class="project-content">
+        <div class="project-tag">Product Launch · Social Strategy</div>
+        <div class="project-name">Red Bull Momentum</div>
+        <div class="project-desc">A full go-to-market strategy for a caffeine-free electrolyte product, including SWOT, influencer strategy, and a 3-month content calendar.</div>
+        <span class="project-view">View PDF</span>
+      </div>
+    </a>
+
+    <a class="project-card reveal" href="EcoFruits-Market-Study.pdf" target="_blank">
+      <div class="project-bg"></div>
+      <div class="project-content">
+        <div class="project-tag">Market Research · France · ESSCA</div>
+        <div class="project-name">ÉcoFruits Market Study</div>
+        <div class="project-desc">Quantitative + qualitative consumer research (n=1,000) on edible fruit stickers for the French market, conducted at ESSCA, Aix-en-Provence.</div>
+        <span class="project-view">View PDF</span>
+      </div>
+    </a>
+
+    <a class="project-card reveal" href="L'Occitane-Strategy.pdf" target="_blank">
+      <div class="project-bg"></div>
+      <div class="project-content">
+        <div class="project-tag">International Brand Strategy</div>
+        <div class="project-name">L'Occitane Strategy Study</div>
+        <div class="project-desc">Analysis of global brand consistency vs. local relevance, evaluating how cultural context shapes messaging effectiveness across markets.</div>
+        <span class="project-view">View PDF</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header reveal">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Education</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-year">Expected May 2026</div>
+      <div class="edu-degree">B.S. in Marketing</div>
+      <div class="edu-school">California State University, Northridge</div>
+      <div class="edu-note">Coursework in consumer behavior, brand strategy, digital marketing, and market research methods.</div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-year">December 2025</div>
+      <div class="edu-degree">Study Abroad — Europe</div>
+      <div class="edu-school">ESSCA School of Management · Aix-en-Provence, France</div>
+      <div class="edu-note">Corporate Finance, Operations Management, International Business, Consumer Market Studies, Sustainable Fashion, Beginner French.</div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-year">December 2024</div>
+      <div class="edu-degree">A.S. in Business Administration</div>
+      <div class="edu-school">Glendale Community College · Glendale, CA</div>
+      <div class="edu-note">Foundational coursework in business administration, economics, accounting, and management principles.</div>
+    </div>
+  </div>
+  <div class="cert-section reveal">
+    <div class="info-label" style="margin-bottom:0.8rem;">Certifications</div>
+    <span class="cert-badge">
+      <span class="cert-dot"></span>
+      <span class="cert-text">HubSpot Academy — Social Media Marketing · March 2026</span>
+    </span>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="contact-eyebrow">Let's Connect</p>
+  <h2 class="contact-headline">Open to<br><em>opportunities</em></h2>
+  <div class="contact-links">
+    <a class="contact-link" href="mailto:sibajastephanie@yahoo.com">
+      <span class="contact-link-label">Email</span>
+      <span class="contact-link-value">sibajastephanie@yahoo.com</span>
+    </a>
+    <a class="contact-link" href="tel:8183952657">
+      <span class="contact-link-label">Phone</span>
+      <span class="contact-link-value">(818) 395-2657</span>
+    </a>
+    <a class="contact-link" href="https://linkedin.com/in/ssibaja" target="_blank">
+      <span class="contact-link-label">LinkedIn</span>
+      <span class="contact-link-value">linkedin.com/in/ssibaja</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-name">Stephanie Sibaja</span>
+  <span class="footer-note">© 2026 · Marketing Portfolio</span>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
